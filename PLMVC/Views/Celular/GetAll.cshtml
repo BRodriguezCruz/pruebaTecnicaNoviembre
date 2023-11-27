@@ -1,0 +1,42 @@
+﻿@model ML.Celular
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center" style="font-family:'Times New Roman'">LISTA GENERAL DE CELULARES</h1>
+<br />
+<hr />
+<div class="table table-responsive">
+    <table class="table tabletable-hover table-striped">
+        <thead class="text-center table table-dark">
+            <tr>
+                <th class="text-center">  EDITAR </th>
+                <th class="text-center">  ID CELULAR </th>
+                <th class="text-center">  MODELO </th>
+                <th class="text-center">  PRECIO </th>
+                <th class="text-center">  FECHA DE LANZAMIENTO</th>
+                <th class="text-center">  ID MARCA</th>
+                <th class="text-center">  MARCA </th>
+                <th class="text-center">  ELIMINAR </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ML.Celular registro in Model.Celulares)
+            {
+                <tr>
+                    <td class="text-center"> <a class="btn btn-warning" href="@Url.Action("Form","Celular", new { idCelular = registro.IdCelular})">EDITAR</a> </td>
+                    <td class="text-center">@registro.IdCelular</td>
+                    <td class="text-center">@registro.Modelo</td>
+                    <td class="text-center">@registro.Precio</td>
+                    <td class="text-center">@registro.FechaLanzamiento</td>
+                    <td class="text-center">@registro.Marca.IdMarca</td>
+                    <td class="text-center">@registro.Marca.Nombre</td>
+                    <td class="text-center"> <a class="btn btn-danger" href="@Url.Action("Delete","Celular", new { idCelular = registro.IdCelular})">ELIMINAR</a> </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a class="btn btn-success" href="@Url.Action("Form","Celular")">AGREGAR NUEVO CELULAR</a>
+

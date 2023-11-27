@@ -1,0 +1,41 @@
+﻿@model ML.Celular
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>INGRESA LOS DATOS SOLICITADOS</h1>
+
+@using(Html.BeginForm("Form","Celular", FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    @Html.HiddenFor(model => model.IdCelular)
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Modelo)
+            @Html.TextBoxFor(model => model.Modelo, new { @class = "form-control"})
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Precio)
+            @Html.TextBoxFor(model => model.Precio, new { @class = "form-control"})
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.FechaLanzamiento)
+            @Html.TextBoxFor(model => model.FechaLanzamiento, new { @class = "form-control", @type = "date"})
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Marca)
+            @Html.TextBoxFor(model => model.Marca.IdMarca, new { @class = "form-control"})
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Marca)
+            @Html.DropDownListFor(model => model.Marca.IdMarca, new SelectList(Model.Marca.Marcas, "IdMarca","Nombre"), "SELECCIONA UNA OPCION", new{ @class = "form-control"})
+        </div>
+    </div>
+    <br />
+    <button class="btn btn-success" type="submit">HECHO</button>
+    <a class="btn btn-warning" href="@Url.Action("GetAll","Celular")">VOLVER</a>
+}
+
